@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-between mt-4">
+  <h2 class="mb-0">Manage Resource</h2>  
+
+</div>
+<div class="row mt-3">
+  <div class="card">
+      <div class="card-header">
+      Add Resource
+        </div>
+      <div class="card-body">
+          <form class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                  <div class="col-md-3">
+                      <div class="mb-3">
+                          <label for="content" class="form-label ">Name</label>
+                          <input type="content" name ="name"formControlName="name" [(ngModel)]="formModel.name" class="form-control" id="name" placeholder="name">
+                          <div *ngIf="itemForm.controls['name'].invalid && (itemForm.controls['name'].dirty || itemForm.controls['name'].touched)"
+                          class="ng-dirty">
+                          <span *ngIf="itemForm.controls['name'].errors">
+                            <span class="text-danger">Please Enter name .</span>
+                          </span>
+                        </div>
+                        </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="mb-3">
+                          <label for="type" class="form-label ">Type</label>
+                          <input type="type" name="type"  formControlName="type" [(ngModel)]="formModel.type" class="form-control" id="type" placeholder="type">
+                          <div *ngIf="itemForm.controls['type'].invalid && (itemForm.controls['type'].dirty || itemForm.controls['type'].touched)"
+                          class="ng-dirty">
+                          <span *ngIf="itemForm.controls['type'].errors">
+                            <span class="text-danger">Please Enter type .</span>
+                          </span>
+                        </div>
+                        </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="mb-3">
+                       
+                              <label class="form-label">Availability:</label>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="availability" id="availability-available" value="true" formControlName="availability">
+                                <label class="form-check-label" for="availability-available">Available</label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="availability" id="availability-unavailable" value="false" formControlName="availability">
+                                <label class="form-check-label" for="availability-unavailable">Unavailable</label>
+                              </div>
+
+                              <div *ngIf="itemForm.controls['availability'].invalid && (itemForm.controls['availability'].dirty || itemForm.controls['availability'].touched)"
+                              class="ng-dirty">
+                              <span *ngIf="itemForm.controls['availability'].errors">
+                                <span class="text-danger">Please Choose Availability .</span>
+                              </span>
+                            </div>
+                           
+                        </div>
+                  </div>
+           
+                  <div class="col-md-2">
+                      <div class="d-grid">
+                          <br>
+                          <button class="btn btn-outline-dark mt-1" type="submit">Submit</button>
+                        </div>
+                  </div>
+              </div>
+            
+             
+            
+             
+            </form>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="row mt-3">
+  <div class="card">
+      <div class="card-header">Resource  Information</div>
+  </div>
+  <div class="card-body">
+      <div class="table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>Sr#</th>
+                      <th>Name</th>
+                      <th>Type</th> 
+                      <th>Availability</th>                           
+                          
+                
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let Resource of resourceList">
+                    <td>{{Resource.resourceID}}</td>
+                      <td>{{Resource.name}}</td>
+                      <td>{{Resource.type}}</td>
+                      <td>
+                          <span *ngIf="Resource.availability">Available</span>
+                          <span *ngIf="!Resource.availability">Not Available</span>
+                
+
+                      </td>
+                   
+                
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  
+</div>

@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-between mt-4">
+  <h2 class="mb-0">Manage Resource Allocation</h2>  
+
+</div>
+<div class="row mt-3">
+  <div class="card">
+      <div class="card-header">
+      Add Resource Allocation
+        </div>
+      <div class="card-body">
+          <form class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="mb-3">
+                    <label for="eventId" class="form-label">Event</label>
+                    <select name="eventId" formControlName="eventId" class="form-control" id="eventId">
+                      <option value="null">Choose Event</option>
+                      <option *ngFor="let val of eventList" [value]="val.eventID">{{val.title}}</option>
+                    </select>
+                    <div *ngIf="itemForm.controls['eventId'].invalid && (itemForm.controls['eventId'].dirty || itemForm.controls['eventId'].touched)"
+                      class="ng-dirty">
+                      <span *ngIf="itemForm.controls['eventId'].errors">
+                        <span class="text-danger">Please Choose Event.</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="mb-3">
+                    <label for="resourceId" class="form-label">Resource</label>
+                    <select name="resourceId" formControlName="resourceId" id="resourceId" class="form-control">
+                      <option value="null">Choose Resource</option>
+                      <option *ngFor="let val of resourceList" [value]="val.resourceID">{{val.name}}</option>
+                    </select>
+                    <div *ngIf="itemForm.controls['resourceId'].invalid && (itemForm.controls['resourceId'].dirty || itemForm.controls['resourceId'].touched)"
+                      class="ng-dirty">
+                      <span *ngIf="itemForm.controls['resourceId'].errors">
+                        <span class="text-danger">Please Choose Resource.</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" name="quantity" formControlName="quantity" class="form-control" id="quantity"
+                      placeholder="Quantity">
+                    <div *ngIf="itemForm.controls['quantity'].invalid && (itemForm.controls['quantity'].dirty || itemForm.controls['quantity'].touched)"
+                      class="ng-dirty">
+                      <span *ngIf="itemForm.controls['quantity'].errors">
+                        <span class="text-danger">Please Enter Quantity.</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="d-grid">
+                    <br>
+                    <button type="submit" class="btn btn-outline-dark mt-1" eventId="submit">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="showMessage" class="alert alert-success mt-4" role="alert">
+              {{ responseMessage }}
+            </div>
+            <div *ngIf="showError" class="alert alert-danger" role="alert">
+              {{errorMessage}}
+            </div>
+            
+      </div>
+  </div>
+</div>
+
+
